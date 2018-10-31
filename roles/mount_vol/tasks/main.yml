@@ -1,0 +1,7 @@
+- name: Mount crawler volume
+  mount:
+    path: /mnt/crawler-vol
+    src: /dev/disk/by-id/scsi-0HC_Volume_1264478
+    fstype: ext4
+    opts: discard,defaults
+    state: mounted

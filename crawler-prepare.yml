@@ -1,0 +1,11 @@
+- name: prepare znodes crawler server
+  hosts: all
+  remote_user: root
+
+  roles:
+    - apt
+    - mount_vol
+    - bashrc
+    - ulimit
+    - redis
+    - reboot

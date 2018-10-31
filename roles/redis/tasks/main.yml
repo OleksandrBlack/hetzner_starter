@@ -1,0 +1,16 @@
+- lineinfile:
+    path: /etc/redis/redis.conf
+    line: 'maxclients 60000'
+
+- lineinfile:
+    path: /etc/redis/redis.conf
+    line: 'unixsocket /var/run/redis/redis-server.sock'
+
+- lineinfile:
+    path: /etc/redis/redis.conf
+    line: 'unixsocketperm 775'
+
+- name: Restart service redis-server
+  service:
+    name: redis-server
+    state: restarted
