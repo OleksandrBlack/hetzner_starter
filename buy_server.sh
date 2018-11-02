@@ -8,6 +8,8 @@ curl -s -X POST -H "${CONTENT_TYPE}" -H "${AUTH_HEADER}" -d @server_params.json 
 SERVER_ID=`cat curl_out.txt | jq '.server.id'`
 SERVER_IP=`cat curl_out.txt | jq -r '.server.public_net.ipv4.ip'`
 
+ssh-keygen -f "/home/${USER}/.ssh/known_hosts" -R "${SERVER_IP}"
+
 for i in {1..10}
 do
 	sleep 5s
@@ -26,8 +28,8 @@ echo "SUCCESS"
 echo "Writing server IP to ssh config"
 sed -i '/Host znodes-tester/!b;n;c\ \ HostName '"$SERVER_IP" ~/.ssh/config
 
-echo "Waiting for sshd to run"
-sleep 20
+echo "Waiting for server to prepare itself"
+sleep 60
 
 echo "Triggering ansible playbook"
 ansible-playbook -i hosts crawler-prepare.yml

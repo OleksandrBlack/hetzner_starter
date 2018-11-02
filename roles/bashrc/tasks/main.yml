@@ -2,8 +2,8 @@
   blockinfile:
     dest: "/root/.bashrc"
     block: |
-      export WORKON_HOME=/mnt/volume-nbg1-1/.virtualenvs
-      source /usr/local/bin/virtualenvwrapper.sh
+      export WORKON_HOME=/mnt/crawler-vol/.virtualenvs
+      source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
       export REDIS_SOCKET=/var/run/redis/redis-server.sock
     marker: '# {mark} ANSIBLE MANAGED BLOCK - virtualenv + redis'
     insertafter: EOF
